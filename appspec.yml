@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html/dev/social-feed
+file_exists_behavior: OVERWRITE
+hooks:
+  # BeforeInstall:
+  #     timeout: 300
+  #     runas: root
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 300
+      runas: root
+      

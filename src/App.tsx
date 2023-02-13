@@ -1,25 +1,28 @@
+import store from '@store/index';
+import { ConfigProvider } from 'antd';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import RoutesComponent from './configs/routes';
+
+// @ts-ignore
+ConfigProvider.config({
+  // @ts-ignore
+  theme: {
+    primaryColor: '#4E1C95'
+  },
+  prefixCls: 'ant'
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter basename={process.env.REACT_APP_BASE_PATH}>
+      <ConfigProvider>
+        <Provider store={store}>
+          <RoutesComponent />
+        </Provider>
+      </ConfigProvider>
+    </BrowserRouter>
   );
 }
 
